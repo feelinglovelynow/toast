@@ -1,0 +1,94 @@
+#fln__toast-wrapper {
+  position: fixed;
+  top: 0.9rem;
+  width: 45rem;
+  left: 50%;
+  margin-left: -22.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+}
+
+.fln__toast {
+  margin-bottom: 0.9rem;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  color: rgb(214, 217, 223);
+  border: 1px solid rgb(55, 65, 81);
+  background-color: rgb(31, 41, 55);
+  animation-name: fln__fade-in-from-above;
+  animation-duration: 0.9s;
+  transition: all 0.9s;
+  max-width: calc(100vw - 3rem);
+}
+
+.fln__toast .fln__toast__icon-wrapper {
+  padding: 0.3rem;
+  margin-right: 1.2rem;
+  border-radius: 0.9rem;
+}
+
+.fln__toast .fln__toast__icon {
+  width: 2.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fln__toast ul {
+  padding: 0;
+  margin: 0 0 0 1.8rem;
+}
+
+.fln__toast li {
+  margin: 0.3rem 0;
+}
+
+.fln__toast .fln__toast__close {
+  border: 1px solid transparent;
+  background-color: transparent;
+  border-radius: 50%;
+  color: rgb(156, 163, 175);
+  transition: all 0.15s;
+  margin: 0 0 0 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.97rem;
+  height: 2.97rem;
+}
+
+.fln__toast .fln__toast__close:hover {
+  cursor: pointer;
+  border-color: rgb(229, 231, 235);
+  background-color: rgb(75, 85, 99);
+}
+
+.fln__toast .fln__toast__close svg {
+  width: 1.8rem;
+}
+
+.fln__toast.fln__toast--hide {
+  animation-name: fln__fade-out-and-slide-up;
+}
+
+.fln__toast.fln__toast--success .fln__toast__icon-wrapper {
+  border: 1px solid rgb(14, 159, 110);
+  background-color: rgb(188, 240, 218);
+}
+
+.fln__toast.fln__toast--success .fln__toast__icon {
+  color: rgb(3, 84, 63);
+}
+
+.fln__toast.fln__toast--info .fln__toast__icon-wrapper {
+  border: 1px solid rgb(63, 131, 248);
+  background-color: rgb(195, 221, 253);
+}
+
+.fln__toast.fln__toast--info .fln__toast__icon path {
+  fill: rgb(30, 66, 159);
+}
