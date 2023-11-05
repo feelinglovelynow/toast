@@ -18,7 +18,17 @@ export default ({ type, items }: ShowToastProps) => {
       toast.style.marginBottom = `-${toast.offsetHeight }px`
 
       setTimeout(() => {
-        window.flnToastWrapper?.removeChild(toast)
+        const toastId = toast.getAttribute('id')
+        const childNodes = window.flnToastWrapper?.childNodes
+
+        if (childNodes) {
+          for (const node of childNodes) { // loop the wrappers child nodes to find the node that was clicked (requested to be removed)
+            if (node instanceof HTMLDivElement && node.getAttribute('id') === toastId) { // IF this is the child node toast that was requested to be removed
+              window.flnToastWrapper?.removeChild(node) // remove the child node
+              break
+            }
+          }
+        }
       }, 810)
     }
   }
