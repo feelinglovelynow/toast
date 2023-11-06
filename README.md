@@ -69,12 +69,12 @@ import showToast from '@feelinglovelynow/toast'
 
 ## 💟 Example: Show info toast
 ```ts
-const removeToast = showToast({ type: 'info', items: [ 'Foo' ] })
+const removeToast = showToast('info', 'Foo')
 ```
 
-## 🌟 Example: Show success toast w/ 2 items + html link
+## 🌟 Example: Show success toast w/ 2 items + html link AND auto close in 6 seconds
 ```ts
-showToast({ type: 'success', items: [ 'Foo', '<a href="/">Bar</a>' ] })
+showToast('success', [ 'Foo', '<a href="/">Bar</a>' ], 6000)
 ```
 
 
