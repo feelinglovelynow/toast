@@ -1,15 +1,13 @@
 declare global { // Node global types
   interface Window { // Browser window types
-    flnCloseToast: (toast: HTMLElement) => void
     flnToastWrapper: HTMLElement | null | undefined
   }
 }
 
 
-export type ShowToastProps = { type: 'info' | 'success', items: string[] }
+export default function showToast (type: 'info' | 'success', items: string | string[], ms = 9000): () => void {
+  let toast: HTMLElement | null = null
 
-
-export default ({ type, items }: ShowToastProps) => {
   if (!window.flnToastWrapper) window.flnToastWrapper = document.getElementById('fln__toast-wrapper')
 
   function removeToast(toast: HTMLElement) {
@@ -17,7 +15,7 @@ export default ({ type, items }: ShowToastProps) => {
       toast.classList.add('fln__toast--hide')
       toast.style.marginBottom = `-${toast.offsetHeight }px`
 
-      setTimeout(() => {
+      setTimeout(() => { // after the toast hide animation is complete => remove the toast from the DOM
         const toastId = toast.getAttribute('id')
         const childNodes = window.flnToastWrapper?.childNodes
 
@@ -33,18 +31,13 @@ export default ({ type, items }: ShowToastProps) => {
     }
   }
 
-  if (!window.flnCloseToast) {
-    window.flnCloseToast = (toast: HTMLElement) => {
-      removeToast(toast)
-    }
-  }
-
   if (window.flnToastWrapper) {
-    let icon
+    let icon, inner
     const id = crypto.randomUUID()
-    const inner = items.length === 1 ? 
-      `<span>${items[0]}</span>` :
-      `<ul>${items.map(item => `<li>${item}</li>`).join('') }</ul>`
+
+    if (typeof items === 'string') inner = `<span>${ items }</span>`
+    else if (items.length === 1) inner = `<span>${ items[0] }</span>`
+    else inner = `<ul>${items.map(item => `<li>${item}</li>`).join('') }</ul>`
 
     switch (type) {
       case 'success':
@@ -65,20 +58,24 @@ export default ({ type, items }: ShowToastProps) => {
       </div>
     `)
 
-    const toast = document.getElementById(id)
+    toast = document.getElementById(id)
 
     if (toast) {
       const button = toast?.querySelector('button') 
 
       if (button) {
         button.addEventListener('click', () => {
-          window.flnCloseToast(toast)
+          if (toast) removeToast(toast)
         })
 
         setTimeout(() => {
-          removeToast(toast)
-        }, 9000)
+          if (toast) removeToast(toast)
+        }, ms)
       }
     }
+  }
+
+  return () => {
+    if (toast) removeToast(toast)
   }
 }

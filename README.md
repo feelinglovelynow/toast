@@ -8,13 +8,19 @@ pnpm add @feelinglovelynow/toast
 
 
 ## 🙏 Description
-Show a closeable success and/or info toast notification
+* Show a closeable `success` or `info` toast notification
+* Toast closes by default after 9 seconds but this is alterable with the `ms` option
+* Toast function returns a `removeToast()` function
+* Toast function recieves a string or an array of items
+    * IF string => toast shows as a `<span>`
+    * ELSE IF array.length is 1 => toast shows as a `<span>`
+    * ELSE => toast shows as an `unordered list`
+* Includes lovely multiple toast showing animations for coming in and sliding / fading away
 
 
 ## 💚 Properties
 ```ts
-export let header: string = ''
-export let onHideModal: () => void = () => {}
+function showToast (type: 'info' | 'success', items: string | string[], ms = 9000): () => void
 ```
 
 
@@ -63,10 +69,10 @@ import showToast from '@feelinglovelynow/toast'
 
 ## 💟 Example: Show info toast
 ```ts
-showToast({ type: 'info', items: [ 'Foo' ] })
+const removeToast = showToast({ type: 'info', items: [ 'Foo' ] })
 ```
 
-## 🌟 Example: Show success toast w/ 2 items and link
+## 🌟 Example: Show success toast w/ 2 items + html link
 ```ts
 showToast({ type: 'success', items: [ 'Foo', '<a href="/">Bar</a>' ] })
 ```
