@@ -58,6 +58,7 @@
   align-items: center;
   justify-content: center;
   width: 2.97rem;
+  min-width: 2.97rem;
   height: 2.97rem;
 }
 
