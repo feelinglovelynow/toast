@@ -87,22 +87,23 @@ showToast('success', [ 'Foo', '<a href="/">Bar</a>' ], 6000)
 .fln__toast {
   &.fln__toast--hide {
 
-    .fln__toast__icon {
-
-    }
-
-    .fln__toast__icon-wrapper {
-
-    }
   }
   &.fln__toast--info {
 
-    .fln__toast__icon {
+    .fln__toast__icon-wrapper {
 
+      .fln__toast__icon {
+
+      }
     }
+  }
+  &.fln__toast--success {
 
     .fln__toast__icon-wrapper {
 
+      .fln__toast__icon {
+
+      }
     }
   }
 
@@ -119,6 +120,10 @@ showToast('success', [ 'Foo', '<a href="/">Bar</a>' ], 6000)
   }
 
   li {
+
+  }
+
+  span {
 
   }
 

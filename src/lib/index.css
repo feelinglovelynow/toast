@@ -26,19 +26,38 @@
 }
 
 .fln__toast .fln__toast__icon-wrapper {
-  padding: 0.3rem;
-  margin-right: 1.2rem;
-  border-radius: 0.9rem;
-}
-
-.fln__toast .fln__toast__icon {
-  width: 2.7rem;
-  min-width: 2.7rem;
-  height: 2.7rem;
-  min-height: 2.7rem;
+  width: 3.6rem;
+  height: 3.6rem;
+  min-width: 3.6rem;
+  min-height: 3.6rem;
+  margin-right: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.fln__toast .fln__toast__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius:0.9rem;
+  width: 3.6rem;
+  min-width: 3.6rem;
+  height: 3.6rem;
+  min-height: 3.6rem;
+}
+
+.fln__toast .fln__toast__icon svg {
+  width: 2.4rem;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  min-height: 2.4rem;
+}
+
+.fln__toast ul,
+.fln__toast span {
+  flex: auto;
 }
 
 .fln__toast ul {
@@ -83,20 +102,14 @@
   animation-name: fln__fade-out-and-slide-up;
 }
 
-.fln__toast.fln__toast--success .fln__toast__icon-wrapper {
+.fln__toast.fln__toast--success .fln__toast__icon {
+  color: rgb(3, 84, 63);
   border: 1px solid rgb(14, 159, 110);
   background-color: rgb(188, 240, 218);
 }
 
-.fln__toast.fln__toast--success .fln__toast__icon {
-  color: rgb(3, 84, 63);
-}
-
-.fln__toast.fln__toast--info .fln__toast__icon-wrapper {
+.fln__toast.fln__toast--info .fln__toast__icon {
+  color: rgb(30, 66, 159);
   border: 1px solid rgb(63, 131, 248);
   background-color: rgb(195, 221, 253);
-}
-
-.fln__toast.fln__toast--info .fln__toast__icon path {
-  fill: rgb(30, 66, 159);
 }
