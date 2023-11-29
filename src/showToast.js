@@ -79,9 +79,9 @@ export function showToast (type, items, ms = 9000)  {
           if (toast) removeToast(toast)
         })
 
-        // setTimeout(() => {
-        //   if (toast) removeToast(toast)
-        // }, ms)
+        setTimeout(() => {
+          if (toast) removeToast(toast)
+        }, ms)
       }
     }
   }
