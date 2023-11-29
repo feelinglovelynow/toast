@@ -1,6 +1,6 @@
 {
   "name": "@feelinglovelynow/toast",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Show a closeable success or info toast notification",
   "author": "https://github.com/feelinglovelynow?tab=repositories",
   "license": "MIT",
