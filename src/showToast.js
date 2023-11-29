@@ -1,16 +1,23 @@
-declare global { // Node global types
-  interface Window { // Browser window types
-    flnToastWrapper: HTMLElement | null | undefined
-  }
-}
+/// <reference path="./types.d.ts" />
 
-
-export default function showToast (type: 'info' | 'success', items: string | string[], ms = 9000): () => void {
-  let toast: HTMLElement | null = null
+/**
+ * Show a toast notification
+ * @param { 'info' | 'success' } type 
+ * @param { string | string[] } items
+ * @param { number } [ms] 
+ * @returns () => void
+ */
+export function showToast (type, items, ms = 9000)  {
+  /** @type { HTMLElement | null } */
+  let toast = null
 
   if (!window.flnToastWrapper) window.flnToastWrapper = document.getElementById('fln__toast-wrapper')
 
-  function removeToast(toast: HTMLElement) {
+  /**
+   * Remove a toast notification
+   * @param { HTMLElement } toast 
+   */
+  function removeToast(toast) {
     if (toast && window.flnToastWrapper) {
       toast.classList.add('fln__toast--hide')
       toast.style.marginBottom = `-${toast.offsetHeight }px`
@@ -72,9 +79,9 @@ export default function showToast (type: 'info' | 'success', items: string | str
           if (toast) removeToast(toast)
         })
 
-        setTimeout(() => {
-          if (toast) removeToast(toast)
-        }, ms)
+        // setTimeout(() => {
+        //   if (toast) removeToast(toast)
+        // }, ms)
       }
     }
   }

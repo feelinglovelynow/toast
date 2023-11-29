@@ -26,6 +26,8 @@
 }
 
 .fln__toast .fln__toast__icon-wrapper {
+  flex-grow: 0;
+  flex-shrink: 0;
   width: 3.6rem;
   height: 3.6rem;
   min-width: 3.6rem;
@@ -42,6 +44,8 @@
   justify-content: center;
   padding: 0;
   border-radius:0.9rem;
+  flex-grow: 0;
+  flex-shrink: 0;
   width: 3.6rem;
   min-width: 3.6rem;
   height: 3.6rem;
@@ -49,6 +53,8 @@
 }
 
 .fln__toast .fln__toast__icon svg {
+  flex-grow: 0;
+  flex-shrink: 0;
   width: 2.4rem;
   min-width: 2.4rem;
   height: 2.4rem;
@@ -79,19 +85,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.97rem;
-  min-width: 2.97rem;
+  flex-grow: 0;
+  flex-shrink: 0;
   height: 2.97rem;
   min-height: 2.97rem;
+  width: 2.97rem;
+  min-width: 2.97rem;
 }
 
 .fln__toast .fln__toast__close:hover {
   cursor: pointer;
-  border-color: rgb(229, 231, 235);
+  border-color: rgb(117, 126, 139);
   background-color: rgb(75, 85, 99);
 }
 
 .fln__toast .fln__toast__close svg {
+  flex-grow: 0;
+  flex-shrink: 0;
   width: 1.8rem;
   min-width: 1.8rem;
   height: 1.8rem;
