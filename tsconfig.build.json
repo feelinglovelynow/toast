@@ -1,18 +1,25 @@
 {
   "files": [
-    "src/__tests__/showToast.test.js",
     "src/index.js",
     "src/showToast.js",
   ],
   "compilerOptions": {
-    "noEmit": true,
     "allowJs": true,
     "checkJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
+    "sourceMap": true,
+    "declaration": true,
     "strict": true,
+    "outDir": "tsc",
+    "declarationMap": true,
     "module": "NodeNext",
-    "target": "ES2017"
+    "target": "ES6",
+    "lib": [
+      "ES6",
+      "DOM",
+      "DOM.Iterable"
+    ]
   }
 }

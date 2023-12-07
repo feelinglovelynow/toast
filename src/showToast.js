@@ -1,35 +1,33 @@
-/// <reference path="./types.d.ts" />
-
 /**
  * Show a toast notification
  * @param { 'info' | 'success' } type 
  * @param { string | string[] } items
  * @param { number } [ms] 
- * @returns () => void
+ * @returns { { id: string, removeToast: () => void } }
  */
 export function showToast (type, items, ms = 9000)  {
   /** @type { HTMLElement | null } */
   let toast = null
-
-  if (!window.flnToastWrapper) window.flnToastWrapper = document.getElementById('fln__toast-wrapper')
+  const id = crypto.randomUUID()
+  const flnToastWrapper = document.getElementById('fln__toast-wrapper')
 
   /**
    * Remove a toast notification
    * @param { HTMLElement } toast 
    */
   function removeToast(toast) {
-    if (toast && window.flnToastWrapper) {
+    if (toast && flnToastWrapper) {
       toast.classList.add('fln__toast--hide')
-      toast.style.marginBottom = `-${toast.offsetHeight }px`
+      toast.style.marginBottom = `-${ toast.offsetHeight }px`
 
       setTimeout(() => { // after the toast hide animation is complete => remove the toast from the DOM
         const toastId = toast.getAttribute('id')
-        const childNodes = window.flnToastWrapper?.childNodes
+        const childNodes = flnToastWrapper.childNodes
 
         if (childNodes) {
           for (const node of childNodes) { // loop the wrappers child nodes to find the node that was clicked (requested to be removed)
             if (node instanceof HTMLDivElement && node.getAttribute('id') === toastId) { // IF this is the child node toast that was requested to be removed
-              window.flnToastWrapper?.removeChild(node) // remove the child node
+              flnToastWrapper.removeChild(node) // remove the child node
               break
             }
           }
@@ -38,13 +36,12 @@ export function showToast (type, items, ms = 9000)  {
     }
   }
 
-  if (window.flnToastWrapper) {
+  if (flnToastWrapper) {
     let icon, inner
-    const id = crypto.randomUUID()
 
     if (typeof items === 'string') inner = `<span>${ items }</span>`
     else if (items.length === 1) inner = `<span>${ items[0] }</span>`
-    else inner = `<ul>${items.map(item => `<li>${item}</li>`).join('') }</ul>`
+    else inner = `<ul>${ items.map(item => `<li>${ item }</li>`).join('') }</ul>`
 
     switch (type) {
       case 'success':
@@ -55,7 +52,7 @@ export function showToast (type, items, ms = 9000)  {
         break
     }
 
-    window.flnToastWrapper.insertAdjacentHTML('beforeend', `
+    flnToastWrapper.insertAdjacentHTML('beforeend', `
       <div id="${ id }" class="fln__toast fln__toast--${ type }">
         <div class="fln__toast__icon-wrapper">
           <div class="fln__toast__icon">
@@ -63,7 +60,7 @@ export function showToast (type, items, ms = 9000)  {
           </div>
         </div>
         ${ inner }
-        <button class="fln__toast__close">
+        <button id="${ id }__close" class="fln__toast__close">
           <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
         </button>
       </div>
@@ -86,7 +83,10 @@ export function showToast (type, items, ms = 9000)  {
     }
   }
 
-  return () => {
-    if (toast) removeToast(toast)
+  return {
+    id,
+    removeToast: () => {
+      if (toast) removeToast(toast)
+    }
   }
 }
